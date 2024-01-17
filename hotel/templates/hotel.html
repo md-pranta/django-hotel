@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Hotel page{% endblock title %}
+
+{% block content %}
+
+
+
+<div class="container mt-5">
+    {% for i in data %}
+    
+    <div class="mb-3">
+        <div style="width: 70%; margin: auto;" class="card">
+            <img style="height: 400px;" src="{{i.image.url}}" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">{{i.hotel_name}}</h5>
+              <p>Location : {{i.location}}</p>
+              <p>One day room price : {{i.fee}}</p>
+              <p class="card-text"> Description :- {{i.description | truncatewords:10}}</p>
+              <a class="btn btn-primary" href="{% url 'details' i.id %}">Details</a>
+            </div>
+          </div>
+    </div>
+      
+    {% endfor %}
+
+</div>
+
+
+
+{% endblock content %}
