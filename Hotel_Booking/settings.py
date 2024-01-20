@@ -28,7 +28,7 @@ SECRET_KEY = 'django-insecure-g(n!%ede-in_3g3&bu%z(5c77_+rqp=*@7*llk#k=r6kru#z6!
 DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
-
+CSRF_TRUSTED_ORIGINS = ['https://hotel-rgz0.onrender.com','https://*.127.0.0.1']
 
 # Application definition
 
