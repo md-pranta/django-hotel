@@ -1,32 +1,52 @@
-{% extends "base.html" %}
-{% load static %}
-
+<!-- prettier-ignore -->
+{% extends "base.html" %} {% load static %}
 {% block title %}Hotel page{% endblock title %}
-
 {% block content %}
 
 
-
-<div class="container mt-5">
-    {% for i in data %}
-    
-    <div class="mb-3">
-        <div style="width: 70%; margin: auto;" class="card">
-            <img style="height: 400px;" src="{{i.image.url}}" class="card-img-top" alt="...">
-            <div class="card-body">
-              <h5 class="card-title">{{i.hotel_name}}</h5>
-              <p>Location : {{i.location}}</p>
-              <p>One day room price : {{i.fee}}</p>
-              <p class="card-text"> Description :- {{i.description | truncatewords:10}}</p>
-              <a class="btn btn-primary" href="{% url 'details' i.id %}">Details</a>
-            </div>
-          </div>
-    </div>
-      
-    {% endfor %}
-
+<div class="text-center p-2 h-100">
+  <h5 class="text-info">Our hotel Classifications</h5>
+<div class="d-flex flex-wrap justify-content-center pt-2 align-items-center">
+  {% for val in category %}
+  <div class="p-1">
+    <button type="button" class="btn btn-success">
+    <a
+      href="{% url 'category_wise' val.slug %}"
+      class="text-decoration-none text-white"
+      >{{val.name}}</a
+    >
+  </div>
+  
+</button>
+  {% endfor %}
 </div>
 
 
+  <div class="container mt-5">
+    {% for i in data %}
 
-{% endblock content %}
+    <div class="mb-3">
+      <div style="width: 70%; margin: auto" class="card">
+        <img
+          style="height: 400px"
+          src="{{i.image.url}}"
+          class="card-img-top"
+          alt="..."
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{i.hotel_name}}</h5>
+          <p>Location : {{i.location}}</p>
+          <p>One day room price : {{i.fee}}</p>
+          <p class="card-text">
+            Description :- {{i.description | truncatewords:10}}
+          </p>
+          <a class="btn btn-primary" href="{% url 'details' i.id %}">Details</a>
+        </div>
+      </div>
+    </div>
+
+    {% endfor %}
+  </div>
+
+  {% endblock content %}
+</div>

@@ -13,4 +13,5 @@ urlpatterns = [
     path('booking/<int:hotel_id>/', views.hotel_booking_view, name='booking'),
 
     path('logout/',  views.userlogoutview.as_view(), name='logout'),
+    path('passchange/',views.pass_change, name='passchange'),
 ]

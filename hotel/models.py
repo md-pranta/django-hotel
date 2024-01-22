@@ -3,7 +3,13 @@ from django.contrib.auth.models import User
 from users.models import UserAccountModel
 
 # Create your models here.
-
+class CategoryModel(models.Model):
+    name = models.CharField(max_length = 15)
+    
+    slug = models.SlugField(max_length=100, unique=True, null=True, blank=True)
+    
+    def __str__(self) -> str:
+        return self.name
 
 
 class HotelModel(models.Model):
@@ -12,6 +18,8 @@ class HotelModel(models.Model):
     fee = models.IntegerField()
     description = models.TextField()
     image = models.ImageField(upload_to='hotel/images/')
+    
+    category = models.ForeignKey(CategoryModel, on_delete=models.CASCADE,null=True, blank=True)
 
 STAR_CHOICE = [
     ('⭐', '⭐'),

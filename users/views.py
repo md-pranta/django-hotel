@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import UserAccountModel
 from django.contrib.auth.models import User
-from .forms import RegisterForm, DepositForm
+from .forms import RegisterForm, DepositForm,ChangeForm
 
 from django.views.generic import FormView, DetailView, CreateView
 from django.contrib.auth import login, logout, authenticate, update_session_auth_hash
@@ -24,7 +24,8 @@ from django.contrib.auth import get_user_model
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
-
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib.auth import update_session_auth_hash
 from hotel.models import HotelModel, BookingModel
 from django.contrib import messages
 
@@ -161,3 +162,12 @@ def hotel_booking_view(request, hotel_id):
     username = request.user.username
     return redirect(reverse('profile', args=[username]))
 
+def pass_change(req):
+    form  = PasswordChangeForm(user=req.user)
+    if req.method == 'POST':
+        form  = PasswordChangeForm(user = req.user, data = req.POST)
+        if form.is_valid():
+            form.save()
+            update_session_auth_hash(req, form.user)
+            return redirect('profile')
+    return render(req, 'passChange.html', {'form':form})

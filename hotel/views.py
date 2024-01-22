@@ -9,9 +9,13 @@ from users.models import UserAccountModel
 from django.contrib.auth.decorators import login_required
 
 @login_required
-def showhotel(request, class_slug = None):
+def showhotel(request, category_slug = None):
     data = models.HotelModel.objects.all()
-    return render(request, 'hotel.html', {'data':data})
+    if category_slug is not None:
+        fil = models.CategoryModel.objects.get(slug=category_slug)
+        data = models.HotelModel.objects.filter(category = fil)
+    category = models.CategoryModel.objects.all()
+    return render(request, 'hotel.html', {'data':data,'category':category})
 
 
 def hotel_detail_view(request, hotel_id):

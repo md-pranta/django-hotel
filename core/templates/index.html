@@ -19,5 +19,67 @@
     </div>
   </div>
 </div>
+<div>
+  <h1 class="text-center text-info">Out Hotels</h1>
+</div>
+<div class="card-group justify-content-center align-align-items-center">
+  <div class="card">
+    <img src="{% static "h1.jpg" %}" class="card-img-top rounded-3" alt="h1" />
+    <div class="card-body">
+      <h5 class="card-title">khali hotel</h5>
+      <p class="card-text">
+        This card has supporting text below as a natural lead-in to additional
+        content.
+      </p>
+    </div>
+  </div>
 
+  <div class="card">
+    <img src="{% static "h2.jpg" %}" class="card-img-top rounded-3" alt="h2" />
+    <div class="card-body">
+      <h5 class="card-title">Card title</h5>
+      <p class="card-text">
+        This card has supporting text below as a natural lead-in to additional
+        content.
+      </p>
+    </div>
+  </div>
+  <div class="card text-center">
+    {% comment %}
+    <div class="card-header">Featured</div>
+    {% endcomment %}
+    <div class="card-body mt-5">
+      <p class="card-title fs-4">
+        We are committed to sustainability. Embrace a guilt-free stay knowing
+        that our eco-friendly practices contribute to a greener planet
+      </p>
+      <p class="card-text fs-4">
+        Welcome to a world where luxury meets efficiency, and hospitality is not
+        just a service, but an experience. Step into our hotel, where every stay
+        is a story waiting to be written.
+      </p>
+      {% if request.user.is_authenticated %}
+      <button type="button" class="btn btn-success">
+        <a href="{% url 'hotel' %}" class="text-decoration-none text-white"
+          >Show all Hotels</a
+        >
+      </button>
+      {% endif %}
+    </div>
+    {% comment %}
+    <div class="card-footer text-muted">2 days ago</div>
+    {% endcomment %}
+  </div>
+  {% comment %}
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">
+        <a href="{% url 'hotel' %}" class="text-decoration-none"
+          >Show all Hotels</a
+        >
+      </h5>
+    </div>
+  </div>
+  {% endcomment %}
+</div>
 {% endblock content %}

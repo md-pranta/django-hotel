@@ -1,67 +1,99 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{% block title %}{% endblock title %}</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
   </head>
   <body>
-    <section>
-        <nav class="navbar navbar-expand-lg  bg-body-tertiary">
-            <div class="container-fluid">
-              <h3 class="navbar-brand">Hotel Haven</h3>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'home' %}">Home</a>
-                  </li>
-                  {% if request.user.is_authenticated %}
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'hotel' %}">Hotel</a>
-                  </li>
-                  {% endif %}
-                 
-               
-                </ul>
-                <div class="d-flex">
-                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    {% if request.user.is_authenticated %}
-            
-                    <li class="nav-item btn btn-primary mx-3">
-                      <a class="nav-link text-white" href="{% url 'profile' user.username %}">Profile</a>
-                    </li>
-                    
-                    <li class="nav-item btn btn-danger mx-3">
-                      <a class="nav-link text-white" href="{% url 'logout' %}">Logout</a>
-                    </li>
-                    {% else %}
-  
-                    <li class="nav-item btn btn-success ">
-                      <a class="nav-link text-white" href="{% url 'register' %}">Register</a>
-                    </li>
-                    <li class="nav-item btn btn-info mx-3">
-                      <a class="nav-link text-white" href="{% url 'login' %}">Login</a>
-                    </li>
-                    {% endif %}
-                    
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </nav>
+    <nav class="navbar navbar-expand-lg bg-info-subtle bg-body-tertiary">
+      <div class="container-fluid">
+        <h3 class="navbar-brand">Hotel Haven</h3>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="{% url 'home' %}"
+                >Home</a
+              >
+            </li>
+            {% if request.user.is_authenticated %}
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                aria-current="page"
+                href="{% url 'hotel' %}"
+                >Hotel</a
+              >
+            </li>
+            {% endif %}
+          </ul>
+          <div class="d-flex">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              {% if request.user.is_authenticated %}
 
-          {% for i in messages %}
-          <div>
-            <h3 class="text-{{i.tags}}">{{i}}</h3>
+              <li class="nav-item btn btn-primary mx-3">
+                <a
+                  class="nav-link text-white"
+                  href="{% url 'profile' user.username %}"
+                  >Profile</a
+                >
+              </li>
+
+              <li class="nav-item btn btn-danger mx-3">
+                <a class="nav-link text-white" href="{% url 'logout' %}"
+                  >Logout</a
+                >
+              </li>
+              {% else %}
+
+              <li class="nav-item btn btn-success">
+                <a class="nav-link text-white" href="{% url 'register' %}"
+                  >Register</a
+                >
+              </li>
+              <li class="nav-item btn btn-info mx-3">
+                <a class="nav-link text-white" href="{% url 'login' %}"
+                  >Login</a
+                >
+              </li>
+              {% endif %}
+            </ul>
           </div>
-          {% endfor %}
-    </section>
+        </div>
+      </div>
+    </nav>
 
-    {% block content %}{% endblock content %}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    {% for i in messages %}
+    <div>
+      <h3 class="text-{{i.tags}}">{{i}}</h3>
+    </div>
+    <!-- prettier-ignore -->
+    {% endfor %} {% block content %}{% endblock content %}
+    {% include "footer.html" %}
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

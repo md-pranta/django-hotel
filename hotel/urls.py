@@ -5,6 +5,7 @@ urlpatterns = [
     
    
     path('hotel/',  views.showhotel, name='hotel'),
+    path('category/<slug:category_slug>/',views.showhotel,name="category_wise"),
     path('details/<int:hotel_id>/', views.hotel_detail_view, name='details'),
 
     path('review/<int:hotel_id>/', views.review_view, name='review'),

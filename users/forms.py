@@ -1,6 +1,6 @@
 # django builtin model forom
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm,UserChangeForm
 from django import forms
 from .models import UserAccountModel
 
@@ -38,3 +38,9 @@ class RegisterForm(UserCreationForm):
 
 class DepositForm(forms.Form):
     amount = forms.DecimalField(max_digits=12, decimal_places=2, min_value=1.00)
+
+class ChangeForm(UserChangeForm):
+    password = None
+    class Meta:
+        model = User
+        fields = ['username', 'first_name', 'last_name', 'email']
