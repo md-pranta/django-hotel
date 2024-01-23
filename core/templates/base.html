@@ -88,7 +88,8 @@
       <h3 class="text-{{i.tags}}">{{i}}</h3>
     </div>
     <!-- prettier-ignore -->
-    {% endfor %} {% block content %}{% endblock content %}
+    {% endfor %}
+    {% block content %}{% endblock content %}
     {% include "footer.html" %}
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
